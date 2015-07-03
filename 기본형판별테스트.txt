@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+
+import requests
+import json
+import urllib
+import BeautifulSoup
+word_input = raw_input("word input : ")
+url = 'http://api.openhangul.com/basic?q=' + word_input
+print url
+
+r = requests.get(url)
+
+data = urllib.urlopen(url)
+soup = BeautifulSoup.BeautifulSoup(data)
+soup_split = soup.prettify()
+div = soup_split.split(",")
+soup_split2 = div[1]
+print soup_split2
+div2 = soup_split2.split(":")
+soup_split3 = div2[1]
+print soup_split3
+div3 = soup_split3.split('"')
+final_soup = div3[1]
+print final_soup
+
+
+
+
