@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+
+import requests
+import json
+
+word_input = raw_input("word input : ")
+url = 'http://api.openhangul.com/dic?api_key=20141107174448&q='+word_input
+print url
+#nelzhul20150703084850: ()
+
+r = requests.get(url)
+
+try:
+    text = json.loads(r.text)
+    print json.dumps(text,sort_keys=True,indent=4)
+    print "질의한 단어",text['word']
+    print "단어의 형태",text['type']
+    print "감성어 타입 ",text['sentiment']
+    print "감성어 확률",text['sentiment_score']
+
+except (ValueError,KeyError):
+    print "ValueError or KeyError"
